@@ -12,16 +12,26 @@
   <% end %>
 
   <div class="field form-group">
-    <%= form.label :street_address %>
+    <%= form.label 'Address or Approximate Location' %>
     <%= form.text_field :street_address, id: :location_street_address, class: 'form-control' %>
   </div>
 
   <div class="field form-group">
     <%= form.label :city %>
-    <%= form.text_field :city, id: :location_city, class: 'form-control' %>
+    <%= form.select :city, Location::MARTA_CITIES, {}, class: 'form-control' %>
   </div>
 
   <div class="actions form-group">
-    <%= form.submit class: 'btn btn-default' %>
+    <%= form.submit "Find My Bus!", class: 'btn btn-default' %>
   </div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
