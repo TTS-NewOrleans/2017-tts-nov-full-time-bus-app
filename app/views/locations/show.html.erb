@@ -53,6 +53,21 @@
       icon: personIcon
     });
 
+    var myContentString = `<div id="content">
+      <h2>Your Location:</h2>
+      <div id="bodyContent">
+        <p><%= @location.full_street_address %></p>
+      </div>
+    </div>`
+
+    var myInfoWindow = new google.maps.InfoWindow({
+      content: myContentString
+    });
+
+    google.maps.event.addListener(myMarker, 'click', function() {
+      myInfoWindow.open(map, myMarker);
+    });
+
     var nearbyBuses = <%= raw @buses.to_json %>;
 
     nearbyBuses.forEach(function(bus) {
@@ -64,6 +79,22 @@
         animation: google.maps.Animation.DROP,
         title: bus['VEHICLE']
       });
+
+      var contentString = `<div id="content">
+        <h2>Bus ${bus['VEHICLE']} ${bus['DIRECTION']}</h2>
+        <div id="bodyContent">
+          <p>Next Stop: ${bus['TIMEPOINT']}</p>
+        </div>
+      </div>`
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      google.maps.event.addListener(busMarker, 'click', function() {
+        infoWindow.open(map, busMarker);
+      });
+
     });
   }
 
