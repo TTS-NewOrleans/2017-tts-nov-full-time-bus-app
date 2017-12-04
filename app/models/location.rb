@@ -35,6 +35,9 @@ class Location < ApplicationRecord
   end
 
   def has_been_geocoded?
-    :geocode until self.geocoded?
+    while self.latitude.nil? || self.longitude.nil?
+      sleep(1)
+      :geocode
+    end
   end
 end

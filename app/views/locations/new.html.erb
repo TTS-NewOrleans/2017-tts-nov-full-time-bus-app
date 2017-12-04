@@ -9,7 +9,7 @@
         Give us your address or corner and we'll let you know if a bus is nearby!
       </p>
 
-      <%= render 'form', location: @location %>
+      <%= render partial: 'form', locals: {location: @location, cities: @cities} %>
     </div>
   </div>
 </div>
